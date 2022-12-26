@@ -1,0 +1,6 @@
+FROM nginx:alpine
+
+# COPY ./Docker/nginx/conf.d/ /etc/nginx/conf.d/
+# COPY ./ /var/www
+
+EXPOSE 80
