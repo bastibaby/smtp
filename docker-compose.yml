@@ -6,7 +6,6 @@ services:
     build:
       context: .
       dockerfile: Docker/Dockerfile
-    image: meat/php74
     restart: unless-stopped
     tty: true
     working_dir: /var/www
@@ -21,7 +20,6 @@ services:
     build:
       context: .
       dockerfile: Docker/Dockerfile_webserver
-    image: meat/nginx
     restart: unless-stopped
     tty: true
     depends_on: 
