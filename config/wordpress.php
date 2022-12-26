@@ -19,14 +19,14 @@
 | @link https://api.wordpress.org/secret-key/1.1/salt/
 |
 */
-define('AUTH_KEY', 'put your unique phrase here');
-define('SECURE_AUTH_KEY', 'put your unique phrase here');
-define('LOGGED_IN_KEY', 'put your unique phrase here');
-define('NONCE_KEY', 'put your unique phrase here');
-define('AUTH_SALT', 'put your unique phrase here');
-define('SECURE_AUTH_SALT', 'put your unique phrase here');
-define('LOGGED_IN_SALT', 'put your unique phrase here');
-define('NONCE_SALT', 'put your unique phrase here');
+define('AUTH_KEY', config('app.salts.auth_key'));
+define('SECURE_AUTH_KEY', config('app.salts.secure_auth_key'));
+define('LOGGED_IN_KEY', config('app.salts.logged_in_key'));
+define('NONCE_KEY', config('app.salts.nonce_key'));
+define('AUTH_SALT', config('app.salts.auth_salt'));
+define('SECURE_AUTH_SALT', config('app.salts.secure_auth_salt'));
+define('LOGGED_IN_SALT', config('app.salts.logged_in_salt'));
+define('NONCE_SALT', config('app.salts.nonce_salt'));
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +36,7 @@ define('NONCE_SALT', 'put your unique phrase here');
 define('DB_NAME', config('database.connections.mysql.database'));
 define('DB_USER', config('database.connections.mysql.username'));
 define('DB_PASSWORD', config('database.connections.mysql.password'));
-define('DB_HOST', config('database.connections.mysql.host'));
+define('DB_HOST', implode(':', [config('database.connections.mysql.host'), config('database.connections.mysql.port')]));
 define('DB_CHARSET', config('database.connections.mysql.charset'));
 define('DB_COLLATE', config('database.connections.mysql.collation'));
 
@@ -93,3 +93,10 @@ define('APP_TD', env('APP_TD', 'themosis'));
 |--------------------------------------------------------------------------
 */
 define('JETPACK_DEV_DEBUG', config('app.debug'));
+
+/*
+|--------------------------------------------------------------------------
+| WordPress Cron
+|--------------------------------------------------------------------------
+*/
+define('DISABLE_WP_CRON', true);

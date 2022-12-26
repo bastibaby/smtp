@@ -1,11 +1,14 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use Themosis\Core\Auth\User;
+use Illuminate\Notifications\Notifiable;
+use Themosis\Core\Auth\User as Authenticatable;
 
-class Customer extends User
+class Customer extends Authenticatable
 {
+    use Notifiable;
+
     /**
      * Mass assignable attributes.
      *
