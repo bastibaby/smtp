@@ -27,6 +27,7 @@ node_modules/
 ### WordPress
 /htdocs/cms/
 /htdocs/content/uploads/
+!/htdocs/content/uploads/advanced-custom-fields-pro/
 /htdocs/content/upgrade/
 
 ### Environment Credentials
