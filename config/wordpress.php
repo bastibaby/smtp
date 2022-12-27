@@ -78,7 +78,7 @@ define('DISALLOW_FILE_EDIT', true);
 | WordPress default theme
 |--------------------------------------------------------------------------
 */
-define('WP_DEFAULT_THEME', 'themosis');
+define('WP_DEFAULT_THEME', 'meat-theme');
 
 /*
 |--------------------------------------------------------------------------
