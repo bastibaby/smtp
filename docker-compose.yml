@@ -4,6 +4,12 @@ services:
   #PHP Service
   app:
     build:
+      args:
+        COMPOSER_VERSION: ${COMPOSER_VERSION?}
+        XDEBUG_PORT: 9003 # default port
+        XDEBUG_MODE: "off" # sets debug enabled / set off to disable
+        XDEBUG_IDEKEY: idekey # sets IDE key. For phpstorm use PHPSTORM
+        XDEBUG_CLIENT_HOST: host.docker.internal
       context: .
       dockerfile: Docker/Dockerfile
     restart: unless-stopped
@@ -14,12 +20,17 @@ services:
       - ./Docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - default
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    environment:
+      PHP_IDE_CONFIG: ${PHP_IDE_CONFIG?}
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+      XDEBUG_MODE: debug
 
   #Nginx Service
   webserver:
-    build:
-      context: .
-      dockerfile: Docker/Dockerfile_webserver
+    image: nginx:alpine
     restart: unless-stopped
     tty: true
     depends_on: 
