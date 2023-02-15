@@ -32,3 +32,8 @@ node_modules/
 
 ### Environment Credentials
 .env
+public/htdocs/dist/app.js
+yarn.lock
+package-lock.json
+public/mix-manifest.json
+htdocs/content/themes/meat-theme/dist
