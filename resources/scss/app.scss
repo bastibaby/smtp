@@ -1,0 +1,22 @@
+/**
+ * Import different sass files for the project
+ * Reference: https://sass-guidelin.es/es/#arquitectura
+ */
+
+/**
+ * Abstracts: files for handles function, mixins, and variables
+ */
+
+@import "abstracts/index";
+
+/**
+ * Base: files for animations, base, typography, and utilities
+ */
+
+@import "base/index";
+
+/**
+ * Components: have a single scss file for each individual component
+ */
+
+ @import "components/index";
