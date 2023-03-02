@@ -23,8 +23,8 @@ class AssetServiceProvider extends ServiceProvider
         /** @var ThemeManager $theme */
         $theme = $this->app->make('wp.theme');
 
-        Asset::add('theme_styles', 'css/theme.css', [], $theme->getHeader('version'))->to('front');
-        Asset::add('theme_woo', 'css/woocommerce.css', ['theme_styles'], $theme->getHeader('version'))->to('front');
-        Asset::add('theme_js', 'js/theme.min.js', [], $theme->getHeader('version'))->to('front');
+        // Asset::add('theme_styles', 'css/theme.css', [], $theme->getHeader('version'))->to('front');
+        // Asset::add('theme_woo', 'css/woocommerce.css', ['theme_styles'], $theme->getHeader('version'))->to('front');
+        // Asset::add('theme_js', 'js/theme.min.js', [], $theme->getHeader('version'))->to('front');
     }
 }
