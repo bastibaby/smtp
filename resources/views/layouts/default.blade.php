@@ -25,7 +25,7 @@
 
   <div class="site wrapper">
     <div class="site__header">
-      @include('components.header')
+      @include('components.header-default')
     </div>
 
     <div class="site__content">
@@ -33,7 +33,7 @@
     </div>
 
     <div class="site__footer">
-      @include('components.footer')
+      @include('components.footer-default')
     </div>
   </div>
 

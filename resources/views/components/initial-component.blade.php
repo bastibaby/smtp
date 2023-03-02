@@ -1,16 +1,6 @@
-<section class="section initial-component py-5">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-auto">
-        <h2 class="text-center mb-4">{!! $title !!}</h2>
-        <img src="{{ $image }}">
-      </div>
-    </div>
+<section class="section initial initial--component">
+  <div class="initial--component__container">
+    <h2 class="initial--component__title">{!! $title !!}</h2>
+    <img class="initial--component__image" src="{{ $image }}">
   </div>
 </section>
-
-<style>
-  .initial-component img {
-    max-width: 100%
-  }
-</style>
