@@ -4,12 +4,6 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+require("./app/main");
 
-/*
- Vue.component('example', require('./components/Example.vue'));
-
- const app = new Vue({
- el: '#app'
- });
-*/
+require("./vue/main");
