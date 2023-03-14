@@ -1,18 +1,53 @@
-let mix = require('laravel-mix');
+const MIX = require("laravel-mix");
+
+const PROJECT_FOLDER = path.basename(process.cwd());
+const THEME_PATH = "htdocs/content/themes/meat-theme";
+const THEME_ASSETS_PATH = "htdocs/content/themes/meat-theme/dist";
 
 /*
- |--------------------------------------------------------------------------
- | Mix Asset Management
- |--------------------------------------------------------------------------
- |
- | Mix provides a clean, fluent API for defining some Webpack build steps
- | for your Laravel application. By default, we are compiling the Sass
- | file for your application, as well as bundling up your JS files.
- |
- */
+  |--------------------------------------------------------------------------
+  | Mix Asset Management
+  |--------------------------------------------------------------------------
+  |
+  | Mix provides a clean, fluent API for defining some Webpack build steps
+  | for your Laravel application. By default, we are compiling the Sass
+  | file for the application as well as bundling up all the JS files.
+  |
+  | For more documentation about `laravel-mix` refer to: https://laravel-mix.com/docs/4.0/
+  |
+*/
 
-mix.js('resources/js/app.js', 'htdocs/dist/')
-    .sass('resources/sass/app.scss', 'htdocs/dist/');
+MIX.setResourceRoot("../")
+  .setPublicPath(THEME_ASSETS_PATH)
+  .js("resources/js/app.js", "js")
+  .sass("resources/scss/app.scss", "css")
+  .extract()
+  .version()
+  .copy("./resources/images", `${THEME_ASSETS_PATH}/images`)
+  .browserSync({
+    proxy: process.env.BROWSERSYNC_PROXY_URL || `localhost:8080`,
+    files: [
+      `${THEME_PATH}/resources/views/**/*.php`,
+      `${THEME_ASSETS_PATH}/js/**/*.js`,
+      `${THEME_ASSETS_PATH}/css/**/*.css`,
+    ],
+    host: "127.0.0.1",
+    port: 3000,
+    open: false,
+    watchOptions: {
+      usePolling: true,
+      interval: 150,
+    },
+  })
+  .disableSuccessNotifications()
+  .autoload({
+    jquery: ["$", "window.jQuery", "jQuery"],
+    axios: "axios",
+    vue: "Vue",
+  })
+  .then((stats) => {
+    console.log(Object.keys(stats.compilation.assets));
+  });
 
 // Full API
 // mix.js(src, output);

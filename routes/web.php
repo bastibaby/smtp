@@ -6,5 +6,5 @@
 Route::get('/', function () {
     $var = rand();
 
-    return view('welcome');
+    return view('pages.welcome');
 });

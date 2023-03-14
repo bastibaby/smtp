@@ -1,0 +1,16 @@
+//rewritten spacer variable in bootstrap to use mayor range in spaces and paddings
+
+$spacer: 0.1rem;
+$spacers: (
+  0: 0,
+);
+@for $i from -150 through 150 {
+  $spacers: map-merge(
+    $spacers,
+    (
+      $i: (
+        $i * $spacer,
+      ),
+    )
+  );
+}

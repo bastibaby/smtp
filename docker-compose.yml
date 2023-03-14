@@ -5,7 +5,7 @@ services:
   app:
     build:
       args:
-        COMPOSER_VERSION: 2
+        COMPOSER_VERSION: $${COMPOSER_VERSION?}
         XDEBUG_PORT: 9003 # default port
         XDEBUG_MODE: "off" # sets debug enabled / set off to disable
         XDEBUG_IDEKEY: idekey # sets IDE key. For phpstorm use PHPSTORM
@@ -23,7 +23,7 @@ services:
     extra_hosts:
       - host.docker.internal:host-gateway
     environment:
-      PHP_IDE_CONFIG: vscode
+      PHP_IDE_CONFIG: $${PHP_IDE_CONFIG?}
       SERVICE_NAME: app
       SERVICE_TAGS: dev
       XDEBUG_MODE: debug
