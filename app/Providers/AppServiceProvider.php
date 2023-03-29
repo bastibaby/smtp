@@ -11,7 +11,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        require __DIR__ . '/../../vendor/autoload.php';
+
+        $app = require_once __DIR__ . '/../../bootstrap/app.php';
+
+        require web_path('cms/wp-load.php');
     }
 
     /**

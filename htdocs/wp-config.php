@@ -8,20 +8,21 @@ defined('DS') ? DS : define('DS', DIRECTORY_SEPARATOR);
 /*----------------------------------------------------*/
 // Application paths
 /*----------------------------------------------------*/
-define('THEMOSIS_PUBLIC_DIR', 'htdocs');
-define('THEMOSIS_ROOT', realpath(__DIR__.'/../'));
-define('CONTENT_DIR', 'content');
-define('WP_CONTENT_DIR', realpath(THEMOSIS_ROOT.DS.THEMOSIS_PUBLIC_DIR.DS.CONTENT_DIR));
-
+defined('THEMOSIS_PUBLIC_DIR') ? THEMOSIS_PUBLIC_DIR : define('THEMOSIS_PUBLIC_DIR', 'htdocs');
+defined('THEMOSIS_ROOT') ? THEMOSIS_ROOT : define('THEMOSIS_ROOT', realpath(__DIR__ . '/../'));
+defined('CONTENT_DIR') ? CONTENT_DIR : define('CONTENT_DIR', 'content');
+defined('WP_CONTENT_DIR') ? WP_CONTENT_DIR : define('WP_CONTENT_DIR', realpath(THEMOSIS_ROOT . DS . THEMOSIS_PUBLIC_DIR . DS . CONTENT_DIR));
 /*----------------------------------------------------*/
 // Composer autoload
 /*----------------------------------------------------*/
-if (file_exists($autoload = THEMOSIS_ROOT.'/vendor/autoload.php')) {
+if (file_exists($autoload = THEMOSIS_ROOT . '/vendor/autoload.php')) {
     require $autoload;
 }
 
-$app = require __DIR__.'/../bootstrap/app.php';
-
+$app = require __DIR__ . '/../bootstrap/app.php';
+if ($app === true) {
+    $app = app();
+}
 /*
 |--------------------------------------------------------------------------
 | Start the application
@@ -44,4 +45,4 @@ $kernel->init(
 $table_prefix = config('database.connections.mysql.prefix', 'wp_');
 
 /* That's all, stop editing! Happy blogging. */
-require_once ABSPATH.'/wp-settings.php';
+require_once ABSPATH . '/wp-settings.php';
