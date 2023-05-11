@@ -27,7 +27,7 @@ node_modules/
 ### WordPress
 /htdocs/cms/
 /htdocs/content/uploads/
-/htdocs/content/plugins/
+/htdocs/content/plugins/*
 !/htdocs/content/plugins/advanced-custom-fields-pro/
 /htdocs/content/upgrade/
 
