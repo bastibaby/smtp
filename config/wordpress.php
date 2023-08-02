@@ -99,4 +99,4 @@ define('JETPACK_DEV_DEBUG', config('app.debug'));
 | WordPress Cron
 |--------------------------------------------------------------------------
 */
-define('DISABLE_WP_CRON', true);
+// define('DISABLE_WP_CRON', true);

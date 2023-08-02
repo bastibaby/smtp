@@ -1,7 +1,7 @@
 {
   "name": "themosis/themosis",
   "description": "Themosis, a WordPress framework.",
-  "keywords": ["themosis", "framework", "wordpress"],
+  "keywords": ["themosis", "framework", "wordpress", "meatcode"],
   "license": "GPL-2.0-or-later",
   "support": {
     "issues": "https://github.com/themosis/framework/issues",
@@ -44,9 +44,9 @@
   },
   "require": {
     "php": "^8.0",
-    "johnpbloch/wordpress-core": "^6.0.0",
+    "johnpbloch/wordpress-core": "6.*",
     "johnpbloch/wordpress-core-installer": "^2.0",
-    "themosis/framework": "^3.0",
+    "themosis/framework": "3.1.0",
     "fideloper/proxy": "^4.4",
     "fruitcake/laravel-cors": "^2.0"
   },
