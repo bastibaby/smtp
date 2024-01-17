@@ -195,6 +195,7 @@ return [
     'hooks' => [
         App\Hooks\Application::class,
         App\Hooks\Compat::class,
+        App\Hooks\Smtp::class,
         App\Hooks\Mail::class,
         App\Hooks\Widgets::class
     ],

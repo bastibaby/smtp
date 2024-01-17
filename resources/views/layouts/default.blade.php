@@ -14,16 +14,20 @@
   @include('helpers.facebook-pixel')
 
   <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
+  <link rel="stylesheet" href="/content/themes/meat-theme/dist/css/styles.css">
+  <!-- Static ressources which could be delayed -->
+	<link crossorigin="anonymous" href="https://fonts.googleapis.com/css?family=Oswald:300,400|Playball|Raleway|Orbitron" rel="stylesheet">
+
 
   @wp_head
 </head>
 
-<body {{ body_class('body') }}>
+<body {{ body_class('body') }} style="background: url({{themosis_assets() . '/images/back.jpg'}}) no-repeat center center">
   @include('helpers.gtm-body')
 
   @stack('modals')
 
-  <div class="site wrapper">
+  <div class="site" style="padding-top: none">
     <div class="site__header">
       @include('components.header-default')
     </div>
