@@ -1,29 +1,33 @@
-# README #
+Themosis framework
+==================
 
-This README would normally document whatever steps are necessary to get your application up and running.
+[![Build Status](https://travis-ci.org/themosis/themosis.svg?branch=dev)](https://travis-ci.org/themosis/themosis)
 
-### What is this repository for? ###
+The Themosis framework is a tool aimed to WordPress developers of any levels. But the better WordPress and PHP knowledge you have the easier it is to work with.
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+Themosis framework is a tool to help you develop websites and web applications faster using [WordPress](https://wordpress.org). Using an elegant and simple code syntax, Themosis framework helps you structure and organize your code and allows you to better manage and scale your WordPress websites and applications.
 
-### How do I get set up? ###
+Installation
+------------
+Please see the [installation section](https://framework.themosis.com/docs/master/installation/) of the Themosis documentation.
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+Development team
+----------------
+The framework was created by [Julien Lambé](https://www.themosis.com/), who continues to lead the development.
 
-### Contribution guidelines ###
+Contributing
+------------
+Any help is appreciated. The project is open-source and we encourage you to participate. You can contribute to the project in multiple ways by:
 
-* Writing tests
-* Code review
-* Other guidelines
+- Reporting a bug issue
+- Suggesting features
+- Sending a pull request with code fix or feature
+- Following the project on [GitHub](https://github.com/themosis)
+- Following us on Twitter: [@Themosis](https://twitter.com/Themosis)
+- Sharing the project around your community
 
-### Who do I talk to? ###
+For details about contributing to the framework, please check the [contribution guide](https://framework.themosis.com/docs/master/contributing).
 
-* Repo owner or admin
-* Other community or team contact
+License
+-------
+The Themosis framework is open-source software licensed under [GPL-2+ license](http://www.gnu.org/licenses/gpl-2.0.html).
