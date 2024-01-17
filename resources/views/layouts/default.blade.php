@@ -27,7 +27,7 @@
 
   @stack('modals')
 
-  <div class="site" style="padding-top: none">
+  <div class="site wrapper" style="padding-top: none">
     <div class="site__header">
       @include('components.header-default')
     </div>
