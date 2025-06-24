@@ -13,6 +13,7 @@ Vagrantfile
 
 ### Composer
 /vendor/
+.vscode
 
 ### IDE
 /.idea
