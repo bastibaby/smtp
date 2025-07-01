@@ -1,51 +1,27 @@
-FROM php:8.1-fpm
+FROM php:8.2-fpm
 
-WORKDIR /var/www
-
+# Instalar dependencias del sistema
 RUN apt-get update && apt-get install -y \
-    build-essential \
-    libpng-dev \
-    libjpeg62-turbo-dev \
-    libfreetype6-dev \
-    locales \
-    zip \
-    libzip-dev \
-    jpegoptim optipng pngquant gifsicle \
-    vim \
-    unzip \
-    git \
-    curl \
-    libonig-dev \
-    libssl-dev \
-    libxml2-dev && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+    git unzip curl zip libpng-dev libonig-dev libxml2-dev libzip-dev cron \
+    && docker-php-ext-install pdo_mysql zip mbstring exif pcntl
 
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg
-RUN docker-php-ext-install pdo_mysql zip exif pcntl mysqli mbstring phar bcmath xml gd
+# Instalar Composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Xdebug (igual que tu configuración)
+WORKDIR /var/www/html
+COPY . .
 
-RUN pecl install xdebug && docker-php-ext-enable xdebug
-
-# Instalar composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-# Copiar composer files primero para cache
-COPY composer.json composer.lock /var/www/
-
-# Instalar dependencias composer
 RUN composer install --optimize-autoloader --no-dev
+RUN php artisan optimize:clear
 
-# Copiar el resto del código
-COPY . /var/www
+# Permisos
+RUN chown -R www-data:www-data /var/www/html
 
-# Crear usuario www-data y asignar permisos
-RUN groupadd -g 1000 www && \
-    useradd -u 1000 -ms /bin/bash -g www www && \
-    chown -R www:www /var/www/storage /var/www/bootstrap/cache
+# Cron para schedule:run
+RUN echo "* * * * * www-data /usr/local/bin/php /var/www/html/artisan schedule:run >> /dev/null 2>&1" > /etc/cron.d/laravel
 
-USER www
+COPY .fly/entrypoint.sh /entrypoint
+RUN chmod +x /entrypoint
 
-EXPOSE 9000
-
+ENTRYPOINT ["/entrypoint"]
 CMD ["php-fpm"]
