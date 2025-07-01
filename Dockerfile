@@ -1,12 +1,7 @@
 FROM php:8.1-fpm
 
-Copy composer.lock and composer.json
-COPY composer.lock composer.json /var/www/
-
-# Set working directory
 WORKDIR /var/www
 
-# Install dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
     libpng-dev \
@@ -20,61 +15,37 @@ RUN apt-get update && apt-get install -y \
     unzip \
     git \
     curl \
-    libonig-dev \ 
+    libonig-dev \
     libssl-dev \
-    libxml2-dev
+    libxml2-dev && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg
+RUN docker-php-ext-install pdo_mysql zip exif pcntl mysqli mbstring phar bcmath xml gd
 
-# Install extensions
-RUN docker-php-ext-install pdo_mysql zip exif pcntl mysqli mbstring phar bcmath xml
-RUN docker-php-ext-configure gd
-RUN docker-php-ext-install gd
+# Xdebug (igual que tu configuración)
 
-COPY ./Docker/php/local.ini /usr/local/etc/php/conf.d/local.ini
+RUN pecl install xdebug && docker-php-ext-enable xdebug
 
-# Add user for laravel application
-RUN groupadd -g 1000 www
-RUN useradd -u 1000 -ms /bin/bash -g www www
-
-# XDEBUG
-RUN pecl install xdebug
-RUN docker-php-ext-enable xdebug
-
-ARG XDEBUG_PORT
-ARG XDEBUG_MODE
-ARG XDEBUG_IDEKEY
-ARG XDEBUG_CLIENT_HOST
-
-RUN echo "error_reporting = E_ALL" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-RUN echo "display_startup_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-RUN echo "display_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-
-# relevant to this answer
-RUN echo "xdebug.client_port=${XDEBUG_PORT}" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-RUN echo "xdebug.mode=${XDEBUG_MODE}" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-RUN echo "xdebug.idekey=${XDEBUG_IDEKEY}" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-RUN echo "xdebug.client_host=${XDEBUG_CLIENT_HOST}" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-
-COPY ./Docker/php/xdebug.ini /usr/local/etc/php/conf.d/
-
-RUN mkdir /tmp/xdebug
-RUN chown -R www:www /tmp/xdebug
-# END XDEBUG
-
-# Install composer
+# Instalar composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Copy existing application directory contents
+# Copiar composer files primero para cache
+COPY composer.json composer.lock /var/www/
+
+# Instalar dependencias composer
+RUN composer install --optimize-autoloader --no-dev
+
+# Copiar el resto del código
 COPY . /var/www
 
-# Copy existing application directory permissions
-COPY --chown=www:www . /var/www
+# Crear usuario www-data y asignar permisos
+RUN groupadd -g 1000 www && \
+    useradd -u 1000 -ms /bin/bash -g www www && \
+    chown -R www:www /var/www/storage /var/www/bootstrap/cache
 
-# Change current user to www
 USER www
 
-# Expose port 9000 and start php-fpm server
 EXPOSE 9000
+
 CMD ["php-fpm"]
