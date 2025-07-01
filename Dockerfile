@@ -10,6 +10,8 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www/html
 COPY . .
 
+RUN ls -la /var/www/html
+
 RUN composer install --no-interaction --optimize-autoloader --no-dev
 RUN php artisan optimize:clear
 
