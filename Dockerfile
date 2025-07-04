@@ -4,8 +4,11 @@ RUN apt-get update && apt-get install -y \
     git unzip curl zip libpng-dev libonig-dev libxml2-dev libzip-dev cron \
     && docker-php-ext-install pdo_mysql zip mbstring exif pcntl \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
+    
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+ENV COMPOSER_ALLOW_SUPERUSER=1
 
 WORKDIR /var/www/html
 COPY . .
