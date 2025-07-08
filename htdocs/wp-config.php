@@ -39,8 +39,13 @@ $kernel->init(
     Illuminate\Http\Request::capture()
 );
 
-define('WP_HOME', 'https://themosis3-0.fly.dev/cms');
-define('WP_SITEURL', 'https://themosis3-0.fly.dev/cms');
+if (!defined('WP_HOME')) {
+    define('WP_HOME', 'https://themosis3-0.fly.dev/cms');
+}
+
+if (!defined('WP_SITEURL')) {
+    define('WP_SITEURL', 'https://themosis3-0.fly.dev/cms');
+}
 
 
 /*----------------------------------------------------*/
