@@ -11,7 +11,7 @@ return [
     | you may use many connections at once using the Database library.
     |
     */
-    'default' => env('DATABASE_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -36,15 +36,15 @@ return [
         ],
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DATABASE_HOST', '127.0.0.1'),
-            'port' => env('DATABASE_PORT', '3306'),
-            'database' => env('DATABASE_NAME', ''),
-            'username' => env('DATABASE_USER', ''),
-            'password' => env('DATABASE_PASSWORD', ''),
-            'unix_socket' => env('DATABASE_SOCKET', ''),
+            'host' => env('DB_HOST', 'database-1.c56oy82429tm.us-east-2.rds.amazonaws.com'),
+            'port' => env('DB_PORT', '3306'),
+            'database' => env('DB_DATABASE', 'database-1'),
+            'username' => env('DB_USERNAME', 'admin'),
+            'password' => env('DB_PASSWORD', 'Basti15678*'),
+            'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
-            'prefix' => env('DATABASE_PREFIX', 'wp_'),
+            'prefix' => env('DB_PREFIX', 'wp_'),
             'strict' => true,
             'engine' => null,
         ]

@@ -1,5 +1,8 @@
 #!/bin/sh
 set -e
 
-# Aquí puedes poner comandos previos al arranque de PHP-FPM
-exec "$@"
+# Arrancar PHP-FPM en background
+php-fpm &
+
+# Arrancar nginx en primer plano para que Fly pueda controlar el proceso principal
+nginx -g 'daemon off;'

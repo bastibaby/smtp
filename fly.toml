@@ -1,1 +1,26 @@
 app = "themosis3-0"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  APP_ENV = "production"
+  APP_DEBUG = "false"
+  LOG_CHANNEL = "stderr"
+
+[[services]]
+  internal_port = 80
+  protocol = "tcp"
+
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
+
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
+
+  [[services.tcp_checks]]
+    interval = "15s"
+    timeout = "2s"
+    grace_period = "1s"

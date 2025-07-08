@@ -6,21 +6,16 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap any application services.
-     */
     public function boot()
     {
-        require __DIR__ . '/../../vendor/autoload.php';
+        // Comentamos o eliminamos estas líneas
+        // require __DIR__ . '/../../vendor/autoload.php';
+        // $app = require_once __DIR__ . '/../../bootstrap/app.php';
 
-        $app = require_once __DIR__ . '/../../bootstrap/app.php';
-
-        require web_path('cms/wp-load.php');
+        // Puedes cargar wp-load.php solo si es estrictamente necesario y con control
+        // require_once web_path('cms/wp-load.php');
     }
 
-    /**
-     * Register any application services.
-     */
     public function register()
     {
         //
