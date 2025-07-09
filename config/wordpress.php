@@ -45,8 +45,8 @@ define('DB_COLLATE', config('database.connections.mysql.collation'));
 | WordPress URLs
 |--------------------------------------------------------------------------
 */
-define('WP_HOME', config('app.url'));
-define('WP_SITEURL', config('app.wp.url'));
+define('WP_HOME', 'https://themosis3-0.fly.dev');
+define('WP_SITEURL',  'https://themosis3-0.fly.dev/cms');
 define('WP_CONTENT_URL', WP_HOME.'/'.CONTENT_DIR);
 
 /*

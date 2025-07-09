@@ -43,7 +43,7 @@ return [
     |--------------------------------------------------------------------------
     |
     */
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'https://themosis3-0.fly.dev'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
     */
     'wp' => [
-        'url' => env('WP_URL', 'http://localhost/cms'),
+        'url' => env('WP_URL', 'https://themosis3-0.fly.dev/cms'),
         'dir' => env('WP_DIR', 'cms')
     ],
 
