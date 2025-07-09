@@ -40,7 +40,7 @@ $kernel->init(
 );
 
 if (!defined('WP_HOME')) {
-    define('WP_HOME', 'https://themosis3-0.fly.dev/');
+    define('WP_HOME', 'https://themosis3-0.fly.dev/cms');
 }
 
 if (!defined('WP_SITEURL')) {
