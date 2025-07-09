@@ -13,16 +13,16 @@
   @include('helpers.hotjar')
   @include('helpers.facebook-pixel')
 
-  <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
-  <link rel="stylesheet" href="/content/themes/meat-theme/dist/css/styles.css">
-  <!-- Static ressources which could be delayed -->
-	<link crossorigin="anonymous" href="https://fonts.googleapis.com/css?family=Oswald:300,400|Playball|Raleway|Orbitron" rel="stylesheet">
-
+  <!-- Cambiado mix() por asset() para ruta correcta -->
+  <link rel="stylesheet" href="{{ asset('content/themes/meat-theme/dist/css/app.css') }}">
+  <link rel="stylesheet" href="{{ asset('content/themes/meat-theme/dist/css/styles.css') }}">
+  <!-- Static resources which could be delayed -->
+  <link crossorigin="anonymous" href="https://fonts.googleapis.com/css?family=Oswald:300,400|Playball|Raleway|Orbitron" rel="stylesheet">
 
   @wp_head
 </head>
 
-<body {{ body_class('body') }} style="background: url({{themosis_assets() . '/images/back.jpg'}}) no-repeat center center">
+<body {{ body_class('body') }} style="background: url({{ themosis_assets() . '/images/back.jpg' }}) no-repeat center center">
   @include('helpers.gtm-body')
 
   @stack('modals')
@@ -42,10 +42,12 @@
   </div>
 
   @wp_footer
-  @include('helpers.google-maps-script')
-  <script src="{{mix('/js/manifest.js')}}"></script>
-  <script src="{{mix('/js/vendor.js')}}"></script>
-  <script src="{{mix('/js/app.js')}}"></script>
+
+  <!-- Cambiado mix() por asset() para ruta correcta -->
+  <script src="{{ asset('content/themes/meat-theme/dist/js/manifest.js') }}"></script>
+  <script src="{{ asset('content/themes/meat-theme/dist/js/vendor.js') }}"></script>
+  <script src="{{ asset('content/themes/meat-theme/dist/js/app.js') }}"></script>
+
   @stack('scripts')
 </body>
 </html>
