@@ -37,7 +37,7 @@ if (!defined('WP_HOME')) {
 if (!defined('WP_SITEURL')) {
     define('WP_SITEURL', 'https://themosis3-0.fly.dev/cms');
 }
-define('WP_CONTENT_URL', WP_HOME . '/' . CONTENT_DIR);
+define('WP_CONTENT_URL', WP_HOME . '/content');
 
 // Database
 define('DB_NAME', getenv('DB_DATABASE'));
