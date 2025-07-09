@@ -32,16 +32,26 @@ node_modules/
 !/htdocs/content/plugins/advanced-custom-fields-pro/
 /htdocs/content/upgrade/
 
+### Tema: NO ignorar dist para subir archivos compilados
+!htdocs/content/themes/meat-theme/dist/
+!htdocs/content/themes/meat-theme/dist/**
+
 ### Environment Credentials
 !.env
-public/htdocs/dist/app.js
+
+# Yarn & npm lockfiles
 !yarn.lock
 !package-lock.json
+
+# Laravel Mix manifest
 public/mix-manifest.json
-htdocs/content/themes/meat-theme/dist
-.sentryclirc
-storage/logs/*.log
+
+### Laravel cache & logs
 bootstrap/cache/*
 !bootstrap/cache/.gitignore
 storage/framework/*
 !storage/framework/.gitignore
+storage/logs/*.log
+
+### Sentry config
+.sentryclirc
